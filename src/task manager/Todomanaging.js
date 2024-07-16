@@ -1,4 +1,3 @@
-// src/task manager/Todomanaging.js
 
 // todo task for testing
 let todos = [
@@ -15,8 +14,24 @@ let todos = [
   };
   
   // Create a new Todo
-
-
+  const createTodo = (req, res) => {
+    tryCatch((req,res)=>{
+    const { task } = req.body; 
+  
+    if (!task) {
+      return res.status(400).json({ message: 'U must add a task' });
+    }
+  
+    const newTodo = {
+      id: todos.length + 1,
+      task,
+      completed: false,
+    };
+  
+    todos.push(newTodo);
+    res.status(201).json(newTodo);
+  });
+  };
   
   // Update a Todo
   const updateTodo = (req, res) => {
@@ -45,3 +60,5 @@ let todos = [
     updateTodo,
     deleteTodo,
   };
+
+ 
