@@ -1,0 +1,13 @@
+// src/routes/TODOapp-routes.js
+const express = require('express');
+const router = express.Router();
+const todomanaging = require('../task manager/Todomanaging');
+const db=require('better-sqlite3')("app.db");
+
+// routes Endpoints
+router.get('/', todomanaging.getAllTodos);
+router.post('/', todomanaging.createTodo);
+router.put('/:id', todomanaging.updateTodo);
+router.delete('/:id', todomanaging.deleteTodo);
+
+module.exports = router;
